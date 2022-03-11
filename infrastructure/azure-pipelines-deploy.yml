@@ -1,0 +1,33 @@
+name: 0.1.$(Rev:r)
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - infrastructure/*
+    
+variables:
+  vmImageName: 'ubuntu-latest'
+
+  azureServiceConnection: 'Demo Account'
+  resourceGroupName: 'rutzsco-demo-function-cicd'
+  location: 'eastus'
+  environmentPrefix: 'rutzsco'
+  templateFile: 'infrastructure/main.bicep'
+
+pool:
+  vmImage: $(vmImageName)
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az group create --name $(resourceGroupName) --location $(location)  
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters environmentPrefix=$(environmentPrefix) > outputs.json
+
+      
+      
