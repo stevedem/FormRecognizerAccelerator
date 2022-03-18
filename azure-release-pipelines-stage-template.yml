@@ -1,0 +1,37 @@
+parameters: 
+- name: stageName
+  default: ''
+- name: environment
+  default: ''
+- name: azureSubscription
+  default: ''
+- name: functionAppName
+  default: ''
+- name: packageName
+  default: ''  
+
+stages:
+  - stage: ${{ parameters.stageName }}
+    displayName: ${{ parameters.stageName }}
+
+    jobs:
+    - deployment: Deploy
+      displayName: Deploy
+      environment: ${{ parameters.environment }}
+      pool:
+        vmImage: 'ubuntu-latest'
+  
+      strategy:
+        runOnce:
+          deploy:
+  
+            steps:
+
+            - task: AzureFunctionApp@1
+              displayName: '2. Azure functions app deploy'
+              inputs:
+                azureSubscription: '$(azureSubscription)'
+                appType: functionApp
+                appName: ${{ parameters.functionAppName }}
+                package: '$(Pipeline.Workspace)/build/App/${{ parameters.packageName }}'
+                AppSettings: ''
