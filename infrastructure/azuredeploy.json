@@ -1,0 +1,139 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "type": "String",
+      "metadata": {
+        "description": "The common name of your project."
+      }
+    }
+  },
+  "variables": {
+    "formRecognizerName": "[concat('fr-', parameters('projectName'))]",
+    "functionAppName": "[concat('fa-', parameters('projectName'))]",
+    "hostingPlanName": "[concat('hp-', parameters('projectName'))]",
+    "storageAccountName": "[substring(concat('sa', toLower(parameters('projectName')), uniquestring(resourceGroup().id)), 0, 24)]",
+    "location": "[resourceGroup().location]",
+    "splitPDFsLogicAppName": "[concat('la-01-splitpdfs-', parameters('projectName'))]",
+    "analyzeResultsLogicAppName": "[concat('la-02-analyzeresults-', parameters('projectName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-02-01",
+      "name": "[variables('storageAccountName')]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "Storage"
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2021-02-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "Y1",
+        "tier": "Dynamic",
+        "size": "Y1",
+        "family": "Y"
+      },
+      "properties": {
+        "computeMode": "Dynamic",
+        "reserved": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "name": "[variables('functionAppName')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+      ],
+      "kind": "functionapp,linux",
+      "properties": {
+        "reserved": true,
+        "name": "[variables('functionAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "linuxFxVersion": "python|3.9",
+          "appSettings": [
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~4"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "python"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value,';')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2021-10-01",
+      "name": "[variables('formRecognizerName')]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "S0"
+      },
+      "kind": "FormRecognizer",
+      "identity": {
+        "type": "None"
+      },
+      "properties": {
+        "customSubDomainName": "[variables('formRecognizerName')]",
+        "networkAcls": {
+          "defaultAction": "Allow",
+          "virtualNetworkRules": [],
+          "ipRules": []
+        },
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "apiVersion": "2016-10-01",
+      "name": "[variables('splitPDFsLogicAppName')]",
+      "type": "Microsoft.Logic/workflows",
+      "location": "[variables('location')]",
+      "properties": {
+        "definition": {
+          "$schema": "http://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "triggers": {},
+          "actions": {},
+          "outputs": {}
+        },
+        "parameters": {}
+      }
+    },
+    {
+      "apiVersion": "2016-10-01",
+      "name": "[variables('analyzeResultsLogicAppName')]",
+      "type": "Microsoft.Logic/workflows",
+      "location": "[variables('location')]",
+      "properties": {
+        "definition": {
+          "$schema": "http://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "triggers": {},
+          "actions": {},
+          "outputs": {}
+        },
+        "parameters": {}
+      }
+    }
+  ]
+}
