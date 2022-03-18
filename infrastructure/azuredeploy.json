@@ -16,8 +16,8 @@
     "hostingPlanName": "[concat('hp-', parameters('projectName'))]",
     "storageAccountName": "[concat('sa', uniquestring(resourceGroup().id))]",
     "location": "[resourceGroup().location]",
-    "splitPDFsLogicAppName": "[concat('la-01-splitpdfs-', parameters('projectName'))]",
-    "analyzeResultsLogicAppName": "[concat('la-02-analyzeresults-', parameters('projectName'))]"
+    "splitPDFsLogicAppName": "[concat('la-splitpdfs-', parameters('projectName'))]",
+    "analyzeResultsLogicAppName": "[concat('la-analyzeresults-', parameters('projectName'))]"
   },
   "resources": [
     {
