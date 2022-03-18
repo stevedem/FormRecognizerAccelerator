@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.6'
+- bash: |
+    pip install --target="./.python_packages/lib/python3.6/site-packages" -r ./requirements.txt
+
+- task: ArchiveFiles@2
+  inputs:
+     rootFolderOrFile: '$(Build.SourcesDirectory)'
+     includeRootFolder: false
+     archiveType: 'zip'
+     archiveFile: '$(Build.ArtifactStagingDirectory)/App.zip'
+     replaceExistingArchive: true
+
+- publish: $(Build.ArtifactStagingDirectory)/App.zip
+  displayName: 'Upload package'
+  artifact: App
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'Infrastructure'
+    artifact: 'Infrastructure'
+    publishLocation: 'pipeline'
