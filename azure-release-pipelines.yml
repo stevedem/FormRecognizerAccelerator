@@ -1,0 +1,19 @@
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: build
+    source: 'FormRecognizerAccelerator - BUILD'
+  
+variables:
+  vmImageName: 'ubuntu-latest'
+  azureSubscription: 'Demo Account'
+
+stages:
+- template: azure-release-pipelines-stage-template.yml
+  parameters:
+    stageName: 'CI'
+    environment: 'FR'
+    azureSubscription: ${{ variables.azureSubscription }}
+    functionAppName: 'rutzsco-form-recognizer-fnc'
+    packageName: 'App.zip'

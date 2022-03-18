@@ -11,7 +11,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   azureServiceConnection: 'Demo Account'
-  resourceGroupName: 'rutzsco-demo-function-cicd'
+  resourceGroupName: 'rutzsco-form-recognizer'
   location: 'eastus'
   environmentPrefix: 'rutzsco'
   templateFile: 'infrastructure/main.bicep'
