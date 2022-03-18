@@ -14,7 +14,7 @@
     "formRecognizerName": "[concat('fr-', parameters('projectName'))]",
     "functionAppName": "[concat('fa-', parameters('projectName'))]",
     "hostingPlanName": "[concat('hp-', parameters('projectName'))]",
-    "storageAccountName": "[substring(concat('sa', toLower(parameters('projectName')), uniquestring(resourceGroup().id)), 0, 24)]",
+    "storageAccountName": "[concat('sa', uniquestring(resourceGroup().id))]",
     "location": "[resourceGroup().location]",
     "splitPDFsLogicAppName": "[concat('la-01-splitpdfs-', parameters('projectName'))]",
     "analyzeResultsLogicAppName": "[concat('la-02-analyzeresults-', parameters('projectName'))]"
