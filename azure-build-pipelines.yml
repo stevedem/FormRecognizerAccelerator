@@ -28,6 +28,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: 'Infrastructure'
+    targetPath: 'infrastructure'
     artifact: 'Infrastructure'
     publishLocation: 'pipeline'
