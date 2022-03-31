@@ -82,3 +82,7 @@ The first Logic App is triggered when a multi-page PDF file is created in the �
  
 
 From here, another Logic App triggers whenever a single-page PDF file is created in the “single” container. This Logic App sends the PDF data to the REST API endpoint of your trained custom document model. The results of the API call are returned and stored as JSON. The data in the JSON document contains your custom form fields and selection marks.
+
+## Next Steps
+
+[Implement This Solution - Deploy Resources to Azure](01-deploy-to-azure.md)
