@@ -30,3 +30,7 @@ Each configuration is divided into these sections:
 - Function App - deploy open-source Python code to split PDFs
 - **Split PDFs Logic App** - split multi-page PDF documents to single-page PDF documents
 - **Analyze Results Logic App** - send single-page PDF document data to REST API endpoint of trained custom document model
+
+## Next Steps
+
+[Implement this Solution - Storage Account - create containers & upload data](02-storage-account-containers-upload-data.md)
