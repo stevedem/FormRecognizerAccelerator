@@ -26,3 +26,7 @@ Then, navigate to the storage account that was created during resource deploymen
  
 
 Before continuing to the next section, please follow the steps to Configure CORS (Cross Origin Resource Sharing) on your storage account. This is required to be enabled on your storage account for it to be accessible from the Form Recognizer Studio. A detailed walkthrough can be found here: [Configure CORS | Microsoft Docs](https://docs.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/quickstarts/try-v3-form-recognizer-studio#configure-cors)
+
+## Next Steps
+
+[Form Recognizer - Train Custom Model](03-form-recognizer-train-custom-model.md)
