@@ -7,7 +7,7 @@ This solution implements two capabilities that are commonly required when workin
   1. Splitting multi-page PDF documents into individual, single-page PDF documents
   2. Analyzing the results of documents sent to the Form Recognizer REST API endpoint of a trained custom document model
 
-Please reference [this blog post](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/form-recognizer-solution-accelerator/ba-p/3262782) for detailed, step-by-step instructions for how to implement this solution. You can also click on the individual steps below for the same step-by-step instructions.
+Please reference [this blog post](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/form-recognizer-solution-accelerator/ba-p/3262782) for detailed, step-by-step instructions for how to implement this solution. We are also actively working on organizing the same step-by-step instructions in this repository.
 
 ---
 
