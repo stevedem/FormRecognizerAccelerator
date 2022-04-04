@@ -1,4 +1,4 @@
-# mplement this Solution
+# Implement this Solution
 
 ## Analyze Results Logic App - send single-page PDF document data to REST API endpoint of trained custom document model
 
