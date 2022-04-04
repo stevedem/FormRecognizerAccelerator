@@ -38,3 +38,4 @@ Once your project is open and you can see all five training documents, label and
 
 ## Next Steps
 
+[Function App - deploy open-source Python code to split PDFs](04-deploy-function-app-to-split-pdfs.md)
