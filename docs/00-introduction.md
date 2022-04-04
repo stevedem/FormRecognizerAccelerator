@@ -4,6 +4,10 @@ The Form Recognizer Cognitive Service helps you quickly extract text and structu
 
  
 
+There are two common problems when incorporating scanned paper forms into a production-grade digital solution. The first problem is that documents are usually scanned as a stack of individual pages, which generates a multi-page file. This is efficient for the person scanning the documents, but for downstream solutions, this may cause other issues, such as individually referencing a form or leveraging solutions that are intended to work on a single page. The second problem is that not everyone is comfortable working with REST APIs or developing a fully automated solution. Azure provides you the tools necessary to overcome both of these problems.
+
+ 
+
 This solution implements two capabilities that are commonly required when working with a trained custom document model:
 
  
