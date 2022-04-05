@@ -2,6 +2,8 @@
 
 Accelerate your Form Recognizer solution to production with this Solution Accelerator, which leverages an Azure Function and a set of Logic Apps to split multi-page PDF files to single-page PDF files and sends individual PDF files to the REST API endpoint of a trained custom document model in Form Recognizer.
 
+![Architecture](docs/images/007-form-reco-accelerator.png)
+
 This solution implements two capabilities that are commonly required when working with a trained custom document model: 
 
   1. Splitting multi-page PDF documents into individual, single-page PDF documents
