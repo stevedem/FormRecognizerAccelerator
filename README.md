@@ -27,18 +27,20 @@ Using the below button, six Azure services will be deployed:
 
 Download [sample data]() from this repository and upload it into the new containers you create.
 
-## Step 3: Train custom document model
+## Step 3: [Train custom document model](https://github.com/stevedem/FormRecognizerAccelerator/blob/main/docs/03-form-recognizer-train-custom-model.md)
 
 Open the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio/) and train a custom document model.
 
-## Step 4: Deploy open-source Python code to split PDFs
+## Step 4: [Deploy open-source Python code to split PDFs](https://github.com/stevedem/FormRecognizerAccelerator/blob/main/docs/04-deploy-function-app-to-split-pdfs.md)
 
 Deploy [open-source Python code](https://github.com/stevedem/splitpdfs) to your Function App to split multi-page PDF files.
 
-## Step 5: Configure Logic App to split multi-page PDF documents to single-page PDF documents
+## Step 5: [Configure Logic App to split multi-page PDF documents to single-page PDF documents](https://github.com/stevedem/FormRecognizerAccelerator/blob/main/docs/05-split-pdfs-logic-app.md)
 
 Create a Logic App to call your Azure Function App and save individual PDF files based on a multi-page PDF file input.
 
-## Step 6: Configure Logic App to send single-page PDF document data to REST API endpoint of trained custom document model
+## Step 6: [Configure Logic App to send single-page PDF document data to REST API endpoint of trained custom document model](https://github.com/stevedem/FormRecognizerAccelerator/blob/main/docs/06-analyze-results-logic-app.md)
 
 Leverage the REST API endpoint of a trained custom document model in Form Recognizer.
+
+## Step 7: [Verify the results](https://github.com/stevedem/FormRecognizerAccelerator/blob/main/docs/07-verify-the-functionality.md)
