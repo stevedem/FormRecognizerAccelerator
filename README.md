@@ -44,3 +44,5 @@ Create a Logic App to call your Azure Function App and save individual PDF files
 Leverage the REST API endpoint of a trained custom document model in Form Recognizer.
 
 ## Step 7: [Verify the results](https://github.com/stevedem/FormRecognizerAccelerator/blob/main/docs/07-verify-the-functionality.md)
+
+Upload a multi-page PDF file and verify that the first Logic App produces single-page PDF files. Then, verify that the second Logic App sends each file to the custom model endpoint in Form Recognizer and saves the resulting JSON.
